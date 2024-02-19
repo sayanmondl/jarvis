@@ -1,5 +1,9 @@
-#vs-code
+# vs-code
 .vscode/
 
 openai-env/
 .env
+
+# project
+speeches/
+__pycache__/
