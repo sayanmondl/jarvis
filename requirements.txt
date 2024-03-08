@@ -1,0 +1,4 @@
+openai
+python-dotenv
+pyqt6
+pyside6

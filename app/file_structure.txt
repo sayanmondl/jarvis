@@ -1,0 +1,6 @@
+mainfolder/
+    |- gui/
+        |- main_window.py
+    |- utils/
+        |- utils.py
+    |- app.py

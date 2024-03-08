@@ -1,9 +1,11 @@
 # vs-code
 .vscode/
 
-openai-env/
+aienv/
 .env
 
 # project
-speeches/
 __pycache__/
+app/gui/pytest.py
+app/gui/backup.py
+app/gui/markup.html
