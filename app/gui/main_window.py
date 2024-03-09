@@ -1,10 +1,10 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtGui import QFont, QFontDatabase
 from PyQt6.QtCore import Qt
-from start_jarvis import JarvisButton
-from theme_library import *
-from settings import *
-from history import *
+from .start_jarvis import *
+from .theme_library import *
+from .settings import *
+from .history import *
 import json
 
 

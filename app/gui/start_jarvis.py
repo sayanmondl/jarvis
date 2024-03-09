@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtGui import QIcon
 from PyQt6 import QtGui, QtCore
-from theme_library import *
+from .theme_library import *
 
 
 class JarvisButton(QPushButton):
