@@ -1,5 +1,5 @@
 from PyQt6 import QtWidgets, QtGui, QtCore
-from .settings import *
+from gui.settings import *
 
 
 class ThemeModeButton(QtWidgets.QPushButton):

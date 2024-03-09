@@ -1,11 +1,11 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtGui import QFont, QFontDatabase
 from PyQt6.QtCore import Qt
-from .start_jarvis import *
-from .theme_library import *
-from .settings import *
-from .history import *
-from .execute import *
+from gui.start_jarvis import *
+from gui.theme_library import *
+from gui.settings import *
+from gui.history import *
+from gui.execute import *
 import json
 
 
@@ -156,7 +156,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.controlButton_layout.addWidget(self.executeButton)
         sizePolicy.setHeightForWidth(self.executeButton.sizePolicy().hasHeightForWidth())
         self.executeButton.setSizePolicy(sizePolicy)
-        self.startButton.clicked.connect(lambda: self.executeButton.execute(self.startButton))
+        self.executeButton.clicked.connect(lambda: self.executeButton.execute(self.startButton))
 
         # Button to start Jarvis
         self.startButton = JarvisButton(parent=self.startButton_holder)

@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QPushButton
 from PyQt6 import QtGui, QtCore
-from ..jarvis.get_voice_input import *
+from jarvis.get_voice_input import *
 
 class ExecuteButton(QPushButton):
     def __init__(self, parent=None):

@@ -1,8 +1,8 @@
 from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtGui import QIcon
 from PyQt6 import QtGui, QtCore
-from .theme_library import *
-from ..jarvis.get_voice_input import *
+from gui.theme_library import *
+from jarvis.get_voice_input import *
 
 
 class JarvisButton(QPushButton):
