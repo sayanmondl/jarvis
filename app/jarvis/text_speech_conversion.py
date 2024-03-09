@@ -15,3 +15,4 @@ def speech_to_text(client, speechfile_path) -> str:
         model="whisper-1",
         file=speechfile_path
     )
+    return text_output.text

@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="darkicons">
+    <file>dark/executedark.svg</file>
+    <file>light/executelight.svg</file>
     <file>dark/historydark.svg</file>
     <file>dark/micdark.svg</file>
     <file>dark/settingsdark.svg</file>
