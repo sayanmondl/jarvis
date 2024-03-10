@@ -7,6 +7,11 @@ aienv/
 # project
 __pycache__/
 app/gui/pytest.py
+
 app/jarvis/pytest.py
+app/jarvis/pytest2.py
+
 app/gui/backup.py
 app/gui/markup.html
+
+data/audio/*

@@ -13,12 +13,14 @@ class AudioRecorder:
         self.stop_button = stop_button
         self.start_buttton.setEnabled(True)
         self.stop_button.setEnabled(False)
+        self.record_index = 0
 
     def record_audio(self):
         self.is_recording = True
         self.frames = []
         self.start_buttton.setEnabled(False)
         self.stop_button.setEnabled(True)
+        self.record_index += 1
 
         self.stream = self.audio.open(
             format=pyaudio.paInt16,
@@ -41,17 +43,12 @@ class AudioRecorder:
             self.is_recording = False
             self.recording_thread.join()
 
-            self.stream.stop_stream()
-            self.stream.close()
-            self.audio.terminate()
-
-            wf = wave.open("output.wav", "wb")
+            wf = wave.open(f"data/audio/output_{self.record_index}.wav", "wb")
             wf.setnchannels(1)
             wf.setsampwidth(self.audio.get_sample_size(pyaudio.paInt16))
             wf.setframerate(44100)
             wf.writeframes(b"".join(self.frames))
             wf.close()
 
-            print("Recording stopped.")
             self.start_buttton.setEnabled(True)
             self.stop_button.setEnabled(False)
