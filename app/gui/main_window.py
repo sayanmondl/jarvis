@@ -35,7 +35,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.startButton = JarvisButton(parent=self.startButton_holder)
         self.label = QtWidgets.QLabel(parent=self.label_holder)
         self.theme = Theme()
-        self.displaytext = "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe."
+        self.displaytext = ""
         self.setting_manager = SettingsManager()
         self.settings = self.setting_manager.load_settings()
         self.recorder = AudioRecorder(self.startButton, self.executeButton)
@@ -161,7 +161,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.controlButton_layout.addWidget(self.executeButton)
         sizePolicy.setHeightForWidth(self.executeButton.sizePolicy().hasHeightForWidth())
         self.executeButton.setSizePolicy(sizePolicy)
-        self.executeButton.clicked.connect(self.recorder.stop_recording)
+        self.executeButton.clicked.connect(self.recorder.process)
+        self.executeButton.clicked.connect(self.update_label)
 
         # Button to start Jarvis
         self.startButton.setObjectName("startButton")
@@ -201,3 +202,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def reload_window(self):
         self.settings["theme_mode"] = self.theme.change_theme()
         self.make_ui(self.settings["theme_mode"])
+    
+    def update_label(self):
+        self.displaytext = self.recorder.displaytext

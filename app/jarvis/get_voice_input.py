@@ -1,7 +1,15 @@
 import pyaudio
 import wave
 import threading
+from jarvis.text_speech_conversion import *
+from jarvis.completion import get_response
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+api_key = os.getenv("OPENAI_KEY")
+client = OpenAI(api_key=api_key)
 
 class AudioRecorder:
     def __init__(self, start_buttton, stop_button):
@@ -14,6 +22,7 @@ class AudioRecorder:
         self.start_buttton.setEnabled(True)
         self.stop_button.setEnabled(False)
         self.record_index = 0
+        self.displaytext = ""
 
     def record_audio(self):
         self.is_recording = True
@@ -38,7 +47,7 @@ class AudioRecorder:
             data = self.stream.read(1024)
             self.frames.append(data)
 
-    def stop_recording(self):
+    def process(self):
         if self.stream:
             self.is_recording = False
             self.recording_thread.join()
@@ -50,5 +59,14 @@ class AudioRecorder:
             wf.writeframes(b"".join(self.frames))
             wf.close()
 
+            user_text = self.get_text()
+            response_text = get_response(client, user_text)
+            self.displaytext = response_text
+            print(self.displaytext)
+
             self.start_buttton.setEnabled(True)
             self.stop_button.setEnabled(False)
+
+    def get_text(self):
+        text = speech_to_text(client,f"data/audio/output_{self.record_index}.wav")
+        return text
