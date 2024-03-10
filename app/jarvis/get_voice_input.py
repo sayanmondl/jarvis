@@ -1,6 +1,8 @@
 import pyaudio
 import wave
 import threading
+from PyQt6.QtMultimedia import QMediaPlayer, QAudioOutput
+from PyQt6.QtCore import QUrl
 from jarvis.text_speech_conversion import *
 from jarvis.completion import get_response
 from openai import OpenAI
@@ -23,6 +25,8 @@ class AudioRecorder:
         self.stop_button.setEnabled(False)
         self.record_index = 0
         self.displaytext = ""
+        self.audio_output = QAudioOutput()
+        self.media_player = QMediaPlayer()
 
     def record_audio(self):
         self.is_recording = True
@@ -64,9 +68,15 @@ class AudioRecorder:
             self.displaytext = response_text
 
             text_to_speech(client, response_text, f"data/audio/output/output_{self.record_index}.wav")
+            self.play_audio()
 
             self.start_buttton.setEnabled(True)
             self.stop_button.setEnabled(False)
+
+    def play_audio(self):
+        self.media_player.setAudioOutput(self.audio_output)
+        self.media_player.setSource(QUrl(f"data/audio/output/output_{self.record_index}.wav"))
+        self.media_player.play()
 
     def get_text(self):
         text = speech_to_text(client,f"data/audio/input/input_{self.record_index}.wav")
