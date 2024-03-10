@@ -175,10 +175,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.retranslate_ui()
 
     def set_label(self, thememode, text: str):
-        font_id = QFontDatabase.addApplicationFont("res/fonts/josefin.ttf")
-        if font_id == -1:
-            print("Font loading failed!")
-        font_family = QFontDatabase.applicationFontFamilies(font_id)
+        # font_id = QFontDatabase.addApplicationFont("res/fonts/josefin.ttf")
+        # if font_id == -1:
+        #     print("Font loading failed!")
+        # font_family = QFontDatabase.applicationFontFamilies(font_id)
 
         font = QFont("Segoe UI", 12)
         font.setStyleStrategy(QFont.StyleStrategy.PreferAntialias)
@@ -205,3 +205,4 @@ class MainWindow(QtWidgets.QMainWindow):
     
     def update_label(self):
         self.displaytext = self.recorder.displaytext
+        self.label.setText(self.displaytext)

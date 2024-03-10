@@ -15,4 +15,5 @@ app/jarvis/pytest3.py
 app/gui/backup.py
 app/gui/markup.html
 
-data/audio/*
+data/audio/input/*
+data/audio/output/*

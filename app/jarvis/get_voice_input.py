@@ -52,7 +52,7 @@ class AudioRecorder:
             self.is_recording = False
             self.recording_thread.join()
 
-            wf = wave.open(f"data/audio/output_{self.record_index}.wav", "wb")
+            wf = wave.open(f"data/audio/input/input_{self.record_index}.wav", "wb")
             wf.setnchannels(1)
             wf.setsampwidth(self.audio.get_sample_size(pyaudio.paInt16))
             wf.setframerate(44100)
@@ -62,11 +62,12 @@ class AudioRecorder:
             user_text = self.get_text()
             response_text = get_response(client, user_text)
             self.displaytext = response_text
-            print(self.displaytext)
+
+            text_to_speech(client, response_text, f"data/audio/output/output_{self.record_index}.wav")
 
             self.start_buttton.setEnabled(True)
             self.stop_button.setEnabled(False)
 
     def get_text(self):
-        text = speech_to_text(client,f"data/audio/output_{self.record_index}.wav")
+        text = speech_to_text(client,f"data/audio/input/input_{self.record_index}.wav")
         return text

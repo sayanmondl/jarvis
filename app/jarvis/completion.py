@@ -4,7 +4,7 @@ def get_response(client, text):
         messages=[
             {
                 "role": "system",
-                "content": "You are a helpful assistant, your name is jarvis, if you are said to open a website, you are going to return link to the website only(no text along with it)",
+                "content": "You are a helpful assistant, your name is jarvis, if you are said to open a website, you are going to return link to the website only(no text along with it), sometimes you are funny",
             },
             {
                 "role": "user",

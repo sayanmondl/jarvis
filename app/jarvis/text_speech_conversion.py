@@ -1,13 +1,12 @@
 from pathlib import Path
 
-def text_to_speech(client, text):
+def text_to_speech(client, text, outputfile_path):
     speech_response = client.audio.speech.create(
         model="tts-1",
         voice="nova",
         input=text
     )
-    speechfile_path = Path(__file__).parent / "speeches/speech.mp3"
-    speech_response.stream_to_file(speechfile_path)
+    speech_response.stream_to_file(outputfile_path)
 
 
 def speech_to_text(client, speechfile_path) -> str:
