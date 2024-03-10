@@ -27,7 +27,3 @@ class ExecuteButton(QPushButton):
         self.setIconSize(QtCore.QSize(48, 48))
         self.setMouseTracking(True)
         self.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-
-    def execute(self, jarvisButton):
-        self.recorder = AudioRecorder()
-        self.recorder.stop_recording(self, jarvisButton)

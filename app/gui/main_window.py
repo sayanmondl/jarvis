@@ -6,6 +6,7 @@ from gui.theme_library import *
 from gui.settings import *
 from gui.history import *
 from gui.execute import *
+from jarvis.get_voice_input import AudioRecorder
 import json
 
 
@@ -16,6 +17,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setting_manager = SettingsManager()
         self.settings = self.setting_manager.load_settings()
         self.make_ui(self.settings["theme_mode"])
+        self.recorder = AudioRecorder(self.startButton, self.executeButton)
 
     def make_ui(self, thememode):
         self.setObjectName("MainWindow")
@@ -156,14 +158,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.controlButton_layout.addWidget(self.executeButton)
         sizePolicy.setHeightForWidth(self.executeButton.sizePolicy().hasHeightForWidth())
         self.executeButton.setSizePolicy(sizePolicy)
-        self.executeButton.clicked.connect(lambda: self.executeButton.execute(self.startButton))
+        self.executeButton.clicked.connect(self.recorder.stop_recording)
 
         # Button to start Jarvis
         self.startButton = JarvisButton(parent=self.startButton_holder)
         self.startButton.setObjectName("startButton")
         self.startButton.make_ui(thememode)
         self.startButton_layout.addWidget(self.startButton, 0, 0, 1, 1)
-        self.startButton.clicked.connect(lambda: self.startButton.start_jarvis(self.executeButton))
+        self.startButton.clicked.connect(self.recorder.record_audio)
 
         self.setCentralWidget(self.centralwidget)
 

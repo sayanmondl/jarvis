@@ -2,7 +2,6 @@ from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtGui import QIcon
 from PyQt6 import QtGui, QtCore
 from gui.theme_library import *
-from jarvis.get_voice_input import *
 
 
 class JarvisButton(QPushButton):
@@ -40,8 +39,3 @@ class JarvisButton(QPushButton):
         self.setIconSize(QtCore.QSize(180, 180))
         self.setMouseTracking(True)
         self.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.clicked.connect(self.start_jarvis)
-
-    def start_jarvis(self, executeButton):
-        self.recorder = AudioRecorder()
-        self.recorder.record_audio(self, executeButton)

@@ -2,18 +2,23 @@ import pyaudio
 import wave
 import threading
 
-class AudioRecorder():
-    def __init__(self):
+
+class AudioRecorder:
+    def __init__(self, start_buttton, stop_button):
         self.audio = pyaudio.PyAudio()
         self.is_recording = False
         self.stream = None
         self.frames = []
+        self.start_buttton = start_buttton
+        self.stop_button = stop_button
+        self.start_buttton.setEnabled(True)
+        self.stop_button.setEnabled(False)
 
-    def record_audio(self, startButton, executeButton):
+    def record_audio(self):
         self.is_recording = True
         self.frames = []
-        startButton.setEnabled(False)
-        executeButton.setEnabled(True)
+        self.start_buttton.setEnabled(False)
+        self.stop_button.setEnabled(True)
 
         self.stream = self.audio.open(
             format=pyaudio.paInt16,
@@ -31,7 +36,7 @@ class AudioRecorder():
             data = self.stream.read(1024)
             self.frames.append(data)
 
-    def stop_recording(self, startButton, executeButton):
+    def stop_recording(self):
         if self.stream:
             self.is_recording = False
             self.recording_thread.join()
@@ -47,5 +52,6 @@ class AudioRecorder():
             wf.writeframes(b"".join(self.frames))
             wf.close()
 
-            startButton.setEnabled(True)
-            executeButton.setEnabled(False)
+            print("Recording stopped.")
+            self.start_buttton.setEnabled(True)
+            self.stop_button.setEnabled(False)
