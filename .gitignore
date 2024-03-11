@@ -17,3 +17,11 @@ app/gui/markup.html
 
 data/audio/input/*
 data/audio/output/*
+
+# python venv
+bin/
+include/
+lib/
+lib64
+pyvenv.cfg
+
